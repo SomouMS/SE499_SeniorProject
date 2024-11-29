@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PSUEats</title>
+    <script src="https://kit.fontawesome.com/6991b496f2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styleforUserHomepage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lucida+Sans&display=swap">
+    <style>
+        :root {
+            --primary-color: #e67e22;
+            --secondary-color: #333;
+            --accent-color: darkblue;
+            --background-color: #f0f0f0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, var(--background-color), #ffffff);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #fffcfc;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo {
+            margin-right: auto;
+
+        }
+
+        .logo img {
+            height: 50px;
+            width: 190px;
+        }
+
+        .logo img:hover {
+
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+        }
+
+
+        .main-menus {
+            width: 90%;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        h4 {
+            font-size: x-large;
+        }
+
+        p {
+            font-size: larger;
+        }
+
+        h1 {
+            font-size: 32pt;
+        }
+
+        #restaurant-list img {
+            height: 200px;
+            width: 200px;
+            margin: 20px;
+            border-radius: 20%;
+            box-shadow: 4px 4px 8px rgba(190, 190, 190, 0.8);
+        }
+
+        .highlight-wrapper {
+            display: flex;
+            overflow-x: auto;
+            max-height: 300px;
+            padding: 1rem;
+            gap: 1rem;
+            width: 90%;
+        }
+
+        .highlight-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: stretch;
+            width: 100%;
+            padding: 1%;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .highlight-card:hover {
+            transform: scale(1.05);
+        }
+
+        #restaurant-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            gap: 4%;
+            max-height: 500px;
+            overflow-y: auto;
+
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-icon span {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+
+
+        /* Reviews Section */
+        .reviews-section {
+            margin: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 90%;
+        }
+
+        .reviews-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .review-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-card p {
+            margin: 8px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .review-card p strong {
+            color: #333;
+        }
+
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .reviews-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .review-card {
+                padding: 10px;
+            }
+
+            .main-menus {
+                width: 85%;
+                height: auto;
+                margin-right: 20px;
+            }
+
+            body {
+                margin: 0;
+                padding-right: 10%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                /* Prevent horizontal scrolling */
+                width: 100%;
+                /* Ensure full viewport width */
+            }
+
+
+            * {
+                font-size: 0.8rem;
+                box-sizing: border-box;
+            }
+
+
+            .search-bar {
+                margin-left: 30px;
+                width: 45%;
+            }
+
+
+
+            .main {
+                width: 100%;
+                height: max-content;
+                min-height: 100vh;
+                padding: 2%;
+                background-color: rgb(234, 234, 234);
+                margin-left: 250px;
+            }
+
+            #restaurant-list img {
+                height: 100px;
+                width: 100px;
+            }
+
+
+            p {
+                font-size: small;
+            }
+
+            h4 {
+                font-size: large;
+            }
+
+            .welcomePart div p {
+
+                font-size: 10pt;
+            }
+
+            .welcomePart {
+                margin: 50px;
+            }
+        }
+
+
+        /* Reviews Section */
+        .reviews-section {
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            /* Ensure it does not overflow the viewport */
+            box-sizing: border-box;
+        }
+
+
+        #reviews-list {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 10px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .reviews-list {
+            display: flex;
+            gap: 1rem;
+            /* Add spacing between reviews */
+            flex-wrap: nowrap;
+            /* Keep all reviews in a single row */
+            overflow-x: auto;
+            /* Enable horizontal scrolling for overflow */
+            padding: 0.5rem 0;
+            justify-content: flex-start;
+            /* Align all reviews to the left */
+            align-items: flex-start;
+            /* Align items to the top if heights vary */
+        }
+
+        .review-card {
+            flex: 0 0 auto;
+            /* Prevent stretching */
+            background-color: rgb(250, 224, 183);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            transition: transform 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-card p {
+            margin: 8px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .review-card p strong {
+            color: #333;
+        }
+
+        .highlight-wrapperr {
+            width: 85%;
+            height: auto;
+            margin-right: 20px;
+
+            align-items: left;
+
+        }
+
+        .main-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Light background */
+            padding: 10px 20px;
+            margin-right: 20px;
+        }
+
+        .user {
+            margin-right: 100px;
+        }
+
+        .welcomePart {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 90px;
+            gap: 20px;
+            color: darkblue;
+        }
+
+        .welcomePart div p {
+            font-size: xx-large
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .category-btn {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .category-btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: auto;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: rgb(181, 180, 180);
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(126, 126, 126);
+        }
+    </style>
+</head>
+
+<body class="body">
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="./images/psueatslogo.png" alt="PSUEats Logo" />
+        </div>
+
+        <div class="sidebar-menu">
+            <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/order-history"><i class="fa-solid fa-clock"></i> My Orders</a>
+            <a href="AboutUs"><i class="fa-solid fa-circle-info"></i> About Us</a>
+
+        </div>
+        <div class="sidebar-logout">
+            <a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="main" id="mainContent">
+        <div class="main-navbar">
+            <div><i class="fa fa-bars" id="toggleSidebar"></i></div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search by restaurant title">
+                <button class="searchbar-btn" onclick="searchRestaurants()">Search</button>
+            </div>
+            <div class="userProfile">
+                <div id="psueats-points">Points: <span id="points-value"></span></div>
+                <div class="cart-icon" onclick="viewCart()">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+                <button class="user" onclick="window.location.href='userProfile';"><i class="fa-solid fa-user"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="welcomePart">
+            <div>
+                <h1 style="font-family: URW Chancery L, cursive;">Welcome to PSU Eats</h1>
+            </div>
+            <div>
+                <p>Making your campus life tastier, faster, and easier..</p>
+            </div>
+
+        </div>
+        <div class="category-buttons">
+            <button class="category-btn" data-category="All">All</button>
+            <button class="category-btn" data-category="Cafe">Cafe</button>
+            <button class="category-btn" data-category="Restaurant">Restaurant</button>
+            <button class="category-btn" data-category="Market">Market</button>
+        </div>
+        <div class="main-menus">
+            <div class="main-detail">
+                <h2 class="main-title">Restaurants Available</h2>
+                <div class="detail-wrapper" id="restaurant-list">
+                    <!-- Restaurant data will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Display reviews for each restaurant -->
+        <div class="highlight-wrapperr">
+            <!-- Cards will go here -->
+            <div class="reviews-section" id="reviews-section">
+                <h3>Reviews</h3>
+                <div id="reviews-list">
+                    <!-- Reviews will be dynamically inserted -->
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <footer>
+            &copy; 2024 PSUEATS. All rights reserved.
+        </footer>
+
+        <script>
+            let allRestaurants = [];
+            let filteredRestaurants = [];
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || {}; // Load cart from sessionStorage
+            let currentRestaurantCode = ''; // Store the current restaurant code
+
+            // Fetch restaurants and store them globally
+            async function fetchRestaurants() {
+                try {
+                    const response = await fetch('/get-restaurants');
+                    if (!response.ok) throw new Error('Failed to fetch restaurants');
+                    allRestaurants = await response.json();
+                    filteredRestaurants = [...allRestaurants];  // Initially, show all restaurants
+                    displayRestaurants(filteredRestaurants);
+                } catch (error) {
+                    console.error("Error fetching restaurants:", error);
+                }
+            }
+
+            // Display restaurant cards dynamically
+            function displayRestaurants(restaurants) {
+                const restaurantListContainer = document.getElementById('restaurant-list');
+                restaurantListContainer.innerHTML = '';
+
+                restaurants.forEach(restaurant => {
+                    const restaurantCard = document.createElement('div');
+                    restaurantCard.className = 'highlight-card';
+                    restaurantCard.setAttribute('data-code', restaurant.code);
+
+                    restaurantCard.innerHTML = `
+                        <img src="${restaurant.logoUrl}" alt="${restaurant.title}">
+                        <div>
+                            <h4>${restaurant.title}</h4>
+                            <p>Location: ${restaurant.location}</p>
+                            <p>Category: ${restaurant.category}</p>
+                            <p>Open: ${restaurant.isOpen ? 'Yes' : 'No'}</p>
+                            <p>Rating: ${restaurant.rating} (${restaurant.ratingCount} reviews)</p>
+                        </div>
+                    `;
+
+                    // Redirect to specific restaurant page on click
+                    restaurantCard.addEventListener('click', () => {
+                        window.location.href = `menu.html?title=${restaurant.title}`;
+                    });
+
+
+                    restaurantListContainer.appendChild(restaurantCard);
+                });
+            }
+
+            // Search functionality for restaurants
+            function searchRestaurants() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const filteredBySearch = allRestaurants.filter(restaurant =>
+                    restaurant.title.toLowerCase().includes(searchInput)
+                );
+                displayRestaurants(filteredBySearch);
+            }
+
+            // Add to cart with restaurant restriction
+            function addToCart(name, image, price, code) {
+                if (!currentRestaurantCode) {
+                    currentRestaurantCode = code; // Set the restaurant code on the first addition
+                }
+
+                if (currentRestaurantCode !== code) {
+                    alert(`You can only add items from ${allRestaurants.find(r => r.code === currentRestaurantCode).title}.`);
+                    return; // Prevent adding items from a different restaurant
+                }
+
+                cart[name] = cart[name] ? cart[name] + 1 : 1;
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                saveCartToDatabase(name, image, price, code);
+            }
+
+            async function saveCartToDatabase(name, image, price, code) {
+                const response = await fetch('/add-to-cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, image, price, quantity: cart[name], restaurantCode: code })
+                });
+                if (!response.ok) {
+                    console.error('Failed to save cart item to database');
+                }
+            }
+
+            function updateCart() {
+                const cartCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+                document.getElementById('cartCount').textContent = cartCount;
+            }
+
+            function viewCart() {
+                window.location.href = 'cart.html';
+            }
+            async function fetchUserInfo() {
+                try {
+                    const response = await fetch('/user-info');
+                    if (!response.ok) throw new Error('Failed to fetch user info');
+
+                    const data = await response.json();
+                    // Update the points and other user-related details
+                    document.getElementById('points-value').textContent = data.psueatsPoints.toFixed(1) || 0;
+                } catch (error) {
+                    console.error('Error fetching user info:', error);
+                }
+            }
+
+            // Fetch all reviews
+            async function fetchAllReviews() {
+                try {
+                    const response = await fetch('/get-all-reviews');  // Endpoint to fetch all reviews
+                    if (!response.ok) throw new Error('Failed to fetch reviews');
+                    const reviews = await response.json();  // Assuming the response is an array of reviews
+                    displayReviews(reviews);
+                } catch (error) {
+                    console.error('Error fetching all reviews:', error);
+                }
+            }
+
+            // Function to display all reviews
+            function displayReviews(reviews) {
+                const reviewsSection = document.getElementById('reviews-list');
+                reviewsSection.innerHTML = '';  // Clear any previous reviews
+
+                reviews.forEach(review => {
+                    const reviewCard = document.createElement('div');
+                    reviewCard.className = 'review-card';
+                    reviewCard.innerHTML = `
+            <p><strong>Restaurant:</strong> ${review.selectedShop}</p>
+            <p><strong>Food Rating:</strong> ${review.ratingFood}</p>
+            <p><strong>Service Rating:</strong> ${review.ratingService}</p>
+            <p><strong>Feedback:</strong> ${review.feedback}</p>
+        `;
+                    reviewsSection.appendChild(reviewCard);
+                });
+            }
+
+            function autoScrollReviews() {
+                const reviewsSection = document.getElementById('reviews-list');
+                let scrollAmount = 200;  // Scroll amount per step
+
+                function scrollStep() {
+                    // Scroll to the right by 'scrollAmount' pixels
+                    reviewsSection.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
+                    // Check if we've reached the end of the scrollable content
+                    if (reviewsSection.scrollLeft >= reviewsSection.scrollWidth - reviewsSection.clientWidth) {
+                        // Reset scroll position to 0 (start of the list)
+                        reviewsSection.scrollLeft = 0;
+                    }
+                }
+
+                // Scroll every 2 seconds (1000ms) - adjust as needed
+                setInterval(scrollStep, 2000);
+            }
+            // Filter restaurants by category
+            function filterByCategory(category) {
+                let filtered = [];
+                if (category === 'All') {
+                    filtered = allRestaurants;
+                } else {
+                    filtered = allRestaurants.filter(restaurant => restaurant.category === category);
+                }
+                filteredRestaurants = filtered;  // Store the filtered restaurants
+                displayRestaurants(filteredRestaurants);
+            }
+
+            // Add event listeners for category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const category = e.target.getAttribute('data-category');
+                    filterByCategory(category);
+                });
+            });
+
+            // Fetch and display restaurants on page load
+            window.onload = () => {
+                fetchRestaurants();
+                updateCart(); // Sync cart on page load
+                fetchUserInfo(); // Fetch user info and points
+                fetchAllReviews();
+                autoScrollReviews();
+            };
+        </script>
+        <script>
+            const toggleSidebar = document.getElementById('toggleSidebar');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            toggleSidebar.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                mainContent.classList.toggle('shifted');
+            });
+
+            // Optional: Close the sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !toggleSidebar.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                    mainContent.classList.remove('shifted');
+                }
+            });
+        </script>
+
+    </div>
+</body>
+
+</html>

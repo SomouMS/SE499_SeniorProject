@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Review Order</title>
+    <script src="https://kit.fontawesome.com/6991b496f2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styleforUserHomepage.css">
+
+    <style>
+        :root {
+            --primary-color: #e67e22;
+            --secondary-color: #333;
+            --accent-color: darkblue;
+            --background-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            font-family: "Lucida Sans", Geneva, sans-serif;
+        }
+
+        body {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: rgb(234, 234, 234);
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 2%;
+            background-color: white;
+            color: var(--whiteColor);
+            box-shadow: 0px 7px 11px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-menu a,
+        .sidebar-logout a {
+            padding: 5% 8%;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--whiteColor);
+        }
+
+        .sidebar-menu a i,
+        .sidebar-logout a i {
+            font-size: 20px;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-logout a:hover {
+            background-color: var(--orangeColor);
+            border-radius: 50px;
+        }
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 2%;
+            overflow-y: auto;
+            background-color: rgb(234, 234, 234);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background-color: transparent;
+        }
+
+        .userProfile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user {
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: transparent;
+            color: var(--primaryColor);
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .feedback-form {
+            background-color: var(--whiteColor);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .feedback-form h2 {
+            margin-bottom: 10px;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid var(--grayColor);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            resize: none;
+        }
+
+        .feedback-form .rating-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feedback-form .rating-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-form .rating-group span {
+            font-weight: bold;
+        }
+
+        .feedback-form .stars {
+            display: flex;
+            gap: 5px;
+        }
+
+        .feedback-form .star {
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--grayColor);
+        }
+
+        .feedback-form .star.selected {
+            color: var(--orangeColor);
+        }
+
+        .feedback-form button {
+            background-color: var(--primaryColor);
+            color: var(--whiteColor);
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .feedback-form button:hover {
+            background-color: var(--orangeColor);
+        }
+
+        .feedback-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--grayColor);
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .logo {
+            margin-right: auto;
+
+        }
+
+        .logo img {
+            height: 50px;
+            width: 190px;
+        }
+
+        .logo img:hover {
+
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+        }
+
+        .sidebar-menu a,
+        .sidebar-logout a {
+            padding: 5% 8%;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primaryColor);
+        }
+
+        .sidebar-menu a i,
+        .sidebar-logout a i {
+            font-size: 20px;
+        }
+
+        .logo img {
+            width: 90%;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-logout a:hover {
+            background-color: var(--orangeColor);
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="./images/psueatslogo.png" alt="PSUEats Logo" />
+        </div>
+        <div class="sidebar-menu">
+            <a href="/home"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/order-history"><i class="fa-solid fa-clock"></i> My Orders</a>
+            <a href="AboutUs"><i class="fa-solid fa-circle-info"></i> About Us</a>
+        </div>
+        <div class="sidebar-logout">
+            <a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="navbar">
+            <div class="userProfile">
+                <button class="user" onclick="window.location.href='userProfile';">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="feedback-form">
+            <h2>Review Your Order!</h2>
+            <p id="shop-select"></p>
+
+            <div class="rating-container">
+                <div class="rating-group">
+                    <span>Rate the Food:</span>
+                    <div class="stars" id="food-rating">
+                        <i class="fa-solid fa-star star" onclick="rate('food', 1)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('food', 2)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('food', 3)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('food', 4)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('food', 5)"></i>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <span>Rate the Service:</span>
+                    <div class="stars" id="service-rating">
+                        <i class="fa-solid fa-star star" onclick="rate('service', 1)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('service', 2)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('service', 3)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('service', 4)"></i>
+                        <i class="fa-solid fa-star star" onclick="rate('service', 5)"></i>
+                    </div>
+                </div>
+            </div>
+            <textarea id="feedback" placeholder="We value your feedback!" required></textarea>
+            <button id="submitReview">Submit Review</button>
+        </div>
+    </div>
+
+    <script>
+
+        function rate(category, value) {
+            const stars = document.querySelectorAll(`#${category}-rating .star`);
+            stars.forEach((star, index) => {
+                star.classList.toggle('selected', index < value);
+            });
+        }
+
+        document.getElementById('submitReview').addEventListener('click', async () => {
+            const selectedShop = document.getElementById('shop-select').textContent.replace("Ordered from: ", "").trim();
+            const ratingFood = Array.from(document.querySelectorAll('#food-rating .star.selected')).length;
+            const ratingService = Array.from(document.querySelectorAll('#service-rating .star.selected')).length;
+            const feedback = document.getElementById('feedback').value.trim();
+
+            if (ratingFood === 0 || ratingService === 0 || feedback === '') {
+                alert('Please provide ratings for both food and service, and enter your feedback.');
+                return;
+            }
+
+            console.log('Submitting review:', { ratingFood, ratingService, feedback, selectedShop });
+
+            try {
+                const response = await fetch('/submitReview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ratingFood, ratingService, feedback, selectedShop }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Error: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                alert(data.message);
+                window.location.href = '/UserHomepage.html';
+
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                alert('There was an error submitting your review. Please try again.');
+            }
+        });
+
+        // Function to get query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Retrieve the shop name from the URL
+        const shopName = getQueryParam('shopName');
+
+        // Set the shop name in the dropdown or display it directly
+        if (shopName) {
+            const shopSelect = document.getElementById('shop-select');
+            shopSelect.textContent = "Ordered from: " + shopName;            // Optionally display the shop name somewhere on the page
+            console.log("Reviewing for shop:", shopName);
+        }
+
+    </script>
+
+</body>
+
+</html>

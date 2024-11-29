@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <style>
+        /* Global styles */
+        :root {
+            --primary-color: #e67e22;
+            --secondary-color: #333;
+            --accent-color: darkblue;
+            --background-color: #f0f0f0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+            height: auto;
+            padding-right: 10%;
+            padding-left: 0%;
+            margin: 0%;
+            background: linear-gradient(to bottom right, var(--background-color), #ffffff);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fffcfc;
+            box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.1);
+            margin: 0%;
+            height: 100px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h2,
+        h3,
+        h4 {
+            color: #1d3557;
+        }
+
+
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            flex: 1;
+            color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 2%;
+        }
+
+        .nav-button {
+            display: inline-block;
+            color: white;
+            background-color: var(--accent-color);
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s ease;
+            margin: 5px 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            background-color: var(--primary-color);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logout-button:hover {
+            background-color: red;
+        }
+
+
+        .order-history-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .orders-list {
+            margin-top: 20px;
+        }
+
+        .order-item {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .order-item h3 {
+            color: #1d3557;
+            font-size: 1.5rem;
+        }
+
+        .order-item p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .view-details {
+            background-color: #28a745;
+        }
+
+        .view-details:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        .order-details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 600px) {
+            .order-history-container {
+                padding: 15px;
+            }
+
+            .order-item p {
+                font-size: 14px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 590px) {
+            body {
+                margin: 0% !important;
+                padding: 0% !important;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                /* Prevent horizontal scrolling */
+                width: 100%;
+                /* Ensure full viewport width */
+            }
+
+            header {
+
+                flex-direction: column;
+                align-items: start;
+                margin: 0%;
+                padding: 0%;
+                width: 100%;
+                height: auto;
+                padding-bottom: 5px;
+
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .logoRestaurantName {
+                padding-left: 3%;
+                display: flex;
+                justify-content: start;
+                flex-direction: column !important;
+
+            }
+
+            .logoRestaurantName h1 {
+                margin-left: 130px;
+            }
+
+            nav a {
+                width: 70%;
+                margin-top: 3%;
+            }
+
+            nav {
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        .logo img {
+            height: 50px;
+
+        }
+
+        .logo img:hover {
+
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+        }
+
+        .logoRestaurantName {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            gap: 6%;
+            width: 600px
+        }
+
+        .logoRestaurantName h1 {
+            margin-top: 2%;
+            color: var(--accent-color);
+        }
+
+        @media screen and (min-width:350px)and (max-width: 440px) {
+            * {
+                font-size: 0.9rem;
+            }
+
+            body {
+                padding: 0%;
+                margin: 0%;
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logoRestaurantName">
+            <div class="logo">
+                <img src="./images/psueatslogo.png" alt="PSUEats Logo" />
+            </div>
+            <h1>Order History</h1>
+        </div>
+
+        <nav>
+            <a href="/home" class="nav-button">Home</a>
+            <a href="/logout" class="nav-button logout-button">Logout</a>
+        </nav>
+    </header>
+
+    <div class="order-history-container">
+        <h2>Your Orders</h2>
+        <div class="orders-list">
+            <% if (orders.length===0) { %>
+                <p>No orders found.</p>
+                <% } else { %>
+                    <% orders.forEach(order=> { %>
+                        <div class="order-item" id="order-<%= order._id %>">
+                            <!-- Only Order ID and Total Price initially -->
+                            <h3>Order ID: <%= order._id %>
+                            </h3>
+                            <p><strong>Total Price:</strong>
+                                <%= order.totalPrice %>
+                            </p>
+
+                            <!-- View Details and Delete Buttons -->
+                            <button class="view-details" onclick="toggleDetails('<%= order._id %>')">View Order
+                                Details</button>
+                            <button class="delete-btn" onclick="deleteOrder('<%= order._id %>')">Delete Order</button>
+
+                            <!-- Hidden Order Details Section -->
+                            <div class="order-details" id="details-<%= order._id %>">
+                                <p><strong>Status:</strong>
+                                    <%= order.orderStatus %>
+                                </p>
+                                <p><strong>Payment Status:</strong>
+                                    <%= order.paymentStatus %>
+                                </p>
+                                <p><strong>Pickup Time:</strong>
+                                    <%= order.pickupTime %>
+                                </p> <!-- Added Pickup Time -->
+                                <h4>Items:</h4>
+                                <ul>
+                                    <% order.orders.forEach(item=> { %>
+                                        <li><span>Shop: <%= item.shopName %></span></li>
+                                        <li>
+                                            <%= item.dishName %> x <%= item.quantity %> item/s
+
+                                        </li>
+
+                                        <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <% }) %>
+                            <% } %>
+        </div>
+    </div>
+
+    <script>
+        // Toggle the visibility of the order details
+        function toggleDetails(orderId) {
+            const details = document.getElementById(`details-${orderId}`);
+            if (details.style.display === "none" || details.style.display === "") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+
+        // Delete the order
+        function deleteOrder(orderId) {
+            fetch(`/order/delete/${orderId}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById(`order-${orderId}`).remove();
+                        alert('Order Deleted Successfully!');
+                    } else {
+                        alert('Failed to delete order.');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('An error occurred while deleting the order.');
+                });
+        }
+    </script>
+</body>
+
+</html>

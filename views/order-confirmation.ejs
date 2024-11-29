@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        /* Global styles */
+        :root {
+            --primary-color: #e67e22;
+            --secondary-color: #333;
+            --accent-color: darkblue;
+            --background-color: #f0f0f0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+        }
+
+
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fffcfc;
+            box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.1);
+            margin: 0%;
+            height: 100px;
+            flex-wrap: wrap;
+
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            flex: 1;
+            color: var(--accent-color);
+        }
+
+        .order-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header {
+            text-align: center;
+
+        }
+
+        .order-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .order-items {
+            margin-top: 20px;
+        }
+
+        .order-items ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .order-items li {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .status-actions {
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2%;
+        }
+
+        #update-status-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #update-status-btn:hover {
+            background-color: #0056b3;
+        }
+
+        #review-order-btn {
+            padding: 10px 20px;
+            background-color: #efb300;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #review-order-btn:hover {
+            background-color: #d39f02;
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 600px) {
+            .order-container {
+                padding: 15px;
+            }
+
+            .order-info p {
+                font-size: 14px;
+            }
+
+            #update-status-btn {
+                width: 100%;
+            }
+
+            .status-actions {
+
+                flex-direction: column;
+
+                justify-content: center;
+                gap: 2%;
+            }
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 2%;
+        }
+
+        .nav-button {
+            display: inline-block;
+            color: white;
+            background-color: var(--accent-color);
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s ease;
+            margin: 5px 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            background-color: var(--primary-color);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logout-button:hover {
+            background-color: red;
+        }
+
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-icon span {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 590px) {
+            body {
+                margin: 0% !important;
+                padding: 0% !important;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                /* Prevent horizontal scrolling */
+                width: 100%;
+                /* Ensure full viewport width */
+            }
+
+            header {
+
+                flex-direction: column;
+                align-items: start;
+                margin: 0%;
+                padding: 0%;
+                width: 100%;
+                height: auto;
+                padding-bottom: 5px;
+
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .logoRestaurantName {
+                padding-left: 3%;
+                display: flex;
+                justify-content: start;
+                flex-direction: column !important;
+
+            }
+
+            .logoRestaurantName h1 {
+                margin-left: 130px;
+            }
+
+            nav a {
+                width: 70%;
+                margin-top: 3%;
+            }
+
+            nav {
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        .logo img {
+            height: 50px;
+
+        }
+
+        .logo img:hover {
+
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
+        }
+
+        .logoRestaurantName {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            gap: 6%;
+            width: 600px
+        }
+
+        .logoRestaurantName h1 {
+            margin-top: 2%;
+            color: var(--accent-color);
+        }
+
+        @media screen and (min-width:350px)and (max-width: 440px) {
+            * {
+                font-size: 0.9rem;
+            }
+
+            body {
+                padding: 0%;
+                margin: 0%;
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logoRestaurantName">
+            <div class="logo">
+                <img src="./images/psueatslogo.png" alt="PSUEats Logo" />
+            </div>
+            <h1>Order Confirmation</h1>
+        </div>
+        <nav>
+            <a href="/home" class="nav-button">Home</a>
+            <a href="/logout" class="nav-button logout-button">Logout</a>
+            <div class="cart-icon" onclick="viewCart()">
+                🛒 <span id="cartCount">0</span>
+            </div>
+
+        </nav>
+    </header>
+    <div class="order-container">
+        <div class="order-header">
+            <h1 style="color: var(--accent-color) !important;">Order Details</h1>
+        </div>
+
+        <div class="order-details">
+            <div class="order-info">
+                <p><strong>Order ID:</strong> <span id="order-id">
+                        <%= order._id %>
+                    </span></p>
+                <p><strong>Order Status:</strong> <span id="order-status">
+                        <%= order.orderStatus %>
+                    </span></p>
+                <p><strong>Pickup Time:</strong> <span id="pickup-time">
+                        <%= order.pickupTime %>
+                    </span></p>
+                <p><strong>Total Price:</strong> <span id="total-price">
+                        <%= order.totalPrice %>
+                    </span></p>
+                <p><strong>Payment Method:</strong> <span id="payment-method">
+                        <%= order.paymentMethod %>
+                    </span></p>
+                <p><strong>Payment Status:</strong> <span id="payment-status">
+                        <%= order.paymentStatus %>
+                    </span></p>
+            </div>
+
+            <div class="order-items">
+                <h2>Items</h2>
+                <ul id="order-items-list">
+                    <% order.orders.forEach(item=> { %>
+                        <li>
+                            <%= item.dishName %> - <%= item.price %> x <%= item.quantity %>
+                        </li>
+                        <li>
+                            Shop Name: <%= item.shopName %>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+
+        <div class="status-actions">
+            <form action="/update-status/<%= order._id %>" method="POST">
+                <button type="submit" id="update-status-btn">Update Status</button>
+            </form>
+            <button id="review-order-btn"
+                onclick="redirectToReview('<%= order._id %>', '<%= order.orders[0].shopName %>')">Review Order</button>
+        </div>
+    </div>
+
+    <script>
+        // Clear local storage
+        sessionStorage.clear();
+        // Function to redirect to the reviewOrder page
+        function redirectToReview(orderId, shopName) {
+            // Encode the shop name to ensure it's safe for URL
+            const encodedShopName = encodeURIComponent(shopName);
+            window.location.href = `reviewOrder.html?shopName=${encodedShopName}`;
+        }
+    </script>
+</body>
+
+</html>
